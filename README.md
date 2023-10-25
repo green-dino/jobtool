@@ -41,4 +41,3 @@ The Job Search App is a Python tool designed to assist users in managing their j
 
 This is a simple command-line tool for managing job opportunities. You can further customize and enhance it based on your specific needs and preferences.
 
-Enjoy using the Job Search App to organize and streamline your job search process!
