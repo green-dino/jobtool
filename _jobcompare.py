@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from _jobopprotunity import JobOpportunity
 
 # Sample job data
 job_data = {
@@ -11,7 +12,7 @@ job_data = {
 # Create a DataFrame from the job data
 job_df = pd.DataFrame(job_data)
 
-# Function to compare jobs
+
 def compare_jobs():
     while True:
         print("Job Analysis Tool")
