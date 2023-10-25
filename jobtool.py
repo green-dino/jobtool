@@ -2,6 +2,8 @@
 from _searchapp import JobSearchApp
 from _user import User
 from _jobopprotunity import JobOpportunity
+from tabulate import tabulate
+
 
 class JobSearchApp:
     def __init__(self):
@@ -47,6 +49,42 @@ class JobSearchApp:
         disability_restrictions = input("Enter your disability restrictions/limitations and whether working in this field would exacerbate them: ")
         career_match = input("Explain why this career is a good match for you considering your interests, aptitudes, experience, and abilities: ")
         return JobOpportunity(title, company, location, growth_forecast, entry_level_salary, entry_level_training, job_duties, disability_restrictions, career_match)
+    
+    def compare_jobs(self):
+        if not self.jobs:
+            print("You have no tracked jobs to compare.")
+        else:
+            job_data = []
+            for index, job in enumerate(self.jobs, start=1):
+                job_data.append([index, job.title, job.company, job.location, job.status, job.growth_forecast, job.entry_level_salary])
+
+            headers = ["#", "Job Title", "Company", "Location", "Status", "Growth Forecast", "Salary"]
+
+            # Use tabulate to create a pretty table
+            table = tabulate(job_data, headers, tablefmt="pretty")
+
+            print("Job Comparison Results:")
+            print(table)
+
+    def start(self):
+        print("Welcome to the Job Search App!")
+        self.user = self.create_user()
+        while True:
+            choice = input("What would you like to do? (1 - Add Job, 2 - Display Jobs, 3 - Open Job, 4 - Compare Jobs, 5 - Quit): ")
+            if choice == '1':
+                job = self.create_job()
+                self.add_job(job)
+            elif choice == '2':
+                self.display_jobs()
+            elif choice == '3':
+                self.open_job()
+            elif choice == '4':
+                self.compare_jobs()
+            elif choice == '5':
+                print("Thank you for using the Job Search App. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please select a valid option.")
 
     def display_jobs(self):
         if not self.jobs:
